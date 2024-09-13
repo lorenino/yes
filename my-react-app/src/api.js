@@ -52,3 +52,33 @@ export const fetchSemaines = () => {
       throw error;
     });
 };
+
+// Fonction pour créer une nouvelle tâche
+export const createTache = (tache) => {
+  return axios.post(`${API_URL}/taches`, tache)
+    .then(response => response.data)
+    .catch(error => {
+      console.error('Error creating tache:', error);
+      throw error;
+    });
+};
+
+// Fonction pour créer une nouvelle récurrence
+export const createRecurrence = (recurrence) => {
+  return axios.post(`${API_URL}/recurrences`, recurrence)
+    .then(response => response.data)
+    .catch(error => {
+      console.error('Error creating recurrence:', error);
+      throw error;
+    });
+};
+
+// Fonction pour créer un nouveau sujet
+export const createSujet = (sujet) => {
+  return axios.post(`${API_URL}/sujets`, sujet)
+    .then(response => response.data)
+    .catch(error => {
+      console.error('Error creating sujet:', error);
+      throw error;
+    });
+};

@@ -10,7 +10,7 @@ function CreateTache() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    // Charger les récurrences et les sujets pour le formulaire
+    // Charger les récurrences prédéfinies et les sujets pour le formulaire
     axios.get('http://localhost:5000/api/recurrences')
       .then(response => setRecurrences(response.data))
       .catch(error => console.error('Erreur lors du chargement des récurrences', error));
@@ -24,7 +24,7 @@ function CreateTache() {
     e.preventDefault();
 
     // Envoyer la nouvelle tâche à l'API
-    axios.post('http://localhost:5000/api/taches', { nom, recurrenceId, sujetId })
+    axios.post('http://localhost:5000/api/taches', { nom, recur_type: recurrenceId, sujet_id: sujetId })
       .then(response => {
         setMessage('Tâche créée avec succès');
         setNom('');
@@ -60,7 +60,7 @@ function CreateTache() {
           >
             <option value="">Sélectionner une récurrence</option>
             {recurrences.map((recurrence) => (
-              <option key={recurrence.numero} value={recurrence.numero}>
+              <option key={recurrence.id} value={recurrence.id}>
                 {recurrence.nom}
               </option>
             ))}
